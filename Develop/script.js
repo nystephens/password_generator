@@ -4,6 +4,7 @@ let lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 let upperCase = ["A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 let specialChar = ["!", "\"", "#", "$", "%", "$", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", "_", "`", "{", "}", "|", "~"];
 let numbers = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"];
+let passwordArray = [];
 
 // Function to prompt user to select 3 criteria: 
 // password length, case, and numbers and/or special characters.
@@ -84,10 +85,24 @@ let criteriaSelection = function(){
 
   console.log(selectedArray);
 // end of criteriaSelection();
-};
 
 
 // retrieve random value from combined select array and iterate over length of password characters.
+  for (let i = 0; i <= passwordLength; i++) {
+      // FIGURE OUT HOW TO PULL A RANDOM VALUE FROM selectedArray AND PUT IT IN NEW ARRAY.
+        passwordArray = passwordArray.push(
+        'selectedArray[Math.floor(Math.Random() * (0 - selectedArray.length) + min);'
+        );
+        // get a single value from array by using math.random to assign the index value of the selectedArray
+
+        // push that value into a new array that will contain the characters of the password.
+ 
+    }
+  // use .toString to convert the password array into a single string value.
+  let password = passwordArray.toString();
+  console.log(password);
+};
+
 
 
 
