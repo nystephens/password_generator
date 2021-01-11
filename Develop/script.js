@@ -107,34 +107,26 @@ let generatePassword = function(){
   // confirm selected criteria and if ok, writePassword();
   if (confirm("Click OK or press Enter to generate your random password.")) {
   
+    
+    // //  create div element
+    // let passwordTextEl = document.createElement("div");
+
     // Write password to the #password input
     function writePassword() {
-      
-      // select text box in DOM and set as variable passwordTextBox
-      let passwordTextBox = document.querySelector("#password");
-      //  create div element
-      let passwordTextEl = document.createElement("div");
-      // give div a class name of password-container
-      passwordTextEl.classname = "password-container";
-      // set h3 element with innerHTML
-      passwordTextEl.innerHTML = "<h3 class='generated-password'>" + password + "</h3>"
 
-      // append the newly created DOM element to thew text area
-      passwordTextBox.appendChild(passwordTextEl);
-      // passwordTextEl.appendChild(passwordContentEl);
       console.log(password);
-      // passing the password text into the text area
-      // passwordText.textContent = password;
-      // passwordText.value = passwordText.textContent;
-    
-      // passwordText.setRangeText("Your randomly generated password is: " + password);
-    };
+      // select text area in DOM
+      let passwordText = document.querySelector("#password");
+      // send value to text area
+      passwordText.value = password;
+
+    }
   }
   else {
     return;
   }
   
-  // return;
+  writePassword();
   // end of generatePassword();
 };
 
