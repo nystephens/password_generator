@@ -14,16 +14,11 @@ let generatePassword = function(){
   // value must be between 8 and 128
   if (passwordLength > 7 && passwordLength < 129){
       value = passwordLength;
-      console.log(passwordLength);
   }
   else if (passwordLength < 8 || passwordLength > 128) {
       alert("Please enter valid password length, between 8 and 128 characters.")
       generatePassword();
     } 
-  // else if (passwordLength === "") {
-  // // if left blank then generate random number between 8 - 128
-  // }
-
 
   // CASE PROMPT BEGIN
 
@@ -47,13 +42,12 @@ let generatePassword = function(){
       default:
         // else if user enters invalid response, alert that an incorrect response was entered
         alert('You did not pick a valid option. Try again.');
-        
         // restart function if response is invalid
         generatePassword();
         break;
       }
 
-  console.log(caseSel);
+
 
 // promt user for special characters, numbers, or both
   let numCharSel = prompt("Would you like your password to have numbers, special characters, or both? Please enter '1' for numbers, '2' for special characters, or '3' for both.");
@@ -71,55 +65,34 @@ let generatePassword = function(){
     default:
       // else if user enters invalid response, alert that an incorrect response was entered
       alert('You did not pick a valid option. Try again.');
-      
       // restart function if response is invalid
       generatePassword();
       break;
     }
-  console.log(numCharSel);
-
 
 // combine selected arrays
-// call this function outside this scope!!
   let selectedArray = caseSel.concat(numCharSel);
-
-  console.log(selectedArray);
-
 
 // retrieve random value from combined select array and iterate over length of password characters.
   for (let i = 0; i < passwordLength; i++) {
-      // FIGURE OUT HOW TO PULL A RANDOM VALUE FROM selectedArray AND PUT IT IN NEW ARRAY.
-  
-        let randomValue = Math.floor(Math.random() * selectedArray.length);
-        console.log(randomValue);
-        passwordArray.push(selectedArray[randomValue]);
-        console.log(passwordArray);
         // get a single value from array by using math.random to assign the index value of the selectedArray
+        let randomValue = Math.floor(Math.random() * selectedArray.length);
 
         // push that value into a new array that will contain the characters of the password.
- 
+        passwordArray.push(selectedArray[randomValue]); 
     }
   // use .toString to convert the password array into a single string value.
   let password = passwordArray.join('');
-  console.log(password);
-  
-  debugger;
+
   // confirm selected criteria and if ok, writePassword();
   if (confirm("Click OK or press Enter to generate your random password.")) {
   
-    
-    // //  create div element
-    // let passwordTextEl = document.createElement("div");
-
     // Write password to the #password input
     function writePassword() {
-
-      console.log(password);
       // select text area in DOM
       let passwordText = document.querySelector("#password");
       // send value to text area
       passwordText.value = password;
-
     }
   }
   else {
@@ -129,10 +102,6 @@ let generatePassword = function(){
   writePassword();
   // end of generatePassword();
 };
-
-
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", generatePassword);
