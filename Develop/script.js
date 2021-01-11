@@ -8,7 +8,7 @@ let passwordArray = [];
 
 // Function to prompt user to select 3 criteria: 
 // password length, case, and numbers and/or special characters.
-let criteriaSelection = function(){
+let generatePassword = function(){
   // prompt user to enter number of password characters
   let passwordLength = prompt("Enter desired length of your new password between 8 and 128 characters.");
   // value must be between 8 and 128
@@ -18,7 +18,7 @@ let criteriaSelection = function(){
   }
   else if (passwordLength < 8 || passwordLength > 128) {
       alert("Please enter valid password length, between 8 and 128 characters.")
-    criteriaSelection();
+      generatePassword();
     } 
   // else if (passwordLength === "") {
   // // if left blank then generate random number between 8 - 128
@@ -49,7 +49,7 @@ let criteriaSelection = function(){
         alert('You did not pick a valid option. Try again.');
         
         // restart function if response is invalid
-        criteriaSelection();
+        generatePassword();
         break;
       }
 
@@ -73,7 +73,7 @@ let criteriaSelection = function(){
       alert('You did not pick a valid option. Try again.');
       
       // restart function if response is invalid
-      criteriaSelection();
+      generatePassword();
       break;
     }
   console.log(numCharSel);
@@ -84,38 +84,63 @@ let criteriaSelection = function(){
   let selectedArray = caseSel.concat(numCharSel);
 
   console.log(selectedArray);
-// end of criteriaSelection();
 
 
 // retrieve random value from combined select array and iterate over length of password characters.
-  for (let i = 0; i <= passwordLength; i++) {
+  for (let i = 0; i < passwordLength; i++) {
       // FIGURE OUT HOW TO PULL A RANDOM VALUE FROM selectedArray AND PUT IT IN NEW ARRAY.
-        passwordArray = passwordArray.push(
-        'selectedArray[Math.floor(Math.Random() * (0 - selectedArray.length) + min);'
-        );
+  
+        let randomValue = Math.floor(Math.random() * selectedArray.length);
+        console.log(randomValue);
+        passwordArray.push(selectedArray[randomValue]);
+        console.log(passwordArray);
         // get a single value from array by using math.random to assign the index value of the selectedArray
 
         // push that value into a new array that will contain the characters of the password.
  
     }
   // use .toString to convert the password array into a single string value.
-  let password = passwordArray.toString();
+  let password = passwordArray.join('');
   console.log(password);
+  
+  debugger;
+  // confirm selected criteria and if ok, writePassword();
+  if (confirm("Click OK or press Enter to generate your random password.")) {
+  
+    // Write password to the #password input
+    function writePassword() {
+      
+      // select text box in DOM and set as variable passwordTextBox
+      let passwordTextBox = document.querySelector("#password");
+      //  create div element
+      let passwordTextEl = document.createElement("div");
+      // give div a class name of password-container
+      passwordTextEl.classname = "password-container";
+      // set h3 element with innerHTML
+      passwordTextEl.innerHTML = "<h3 class='generated-password'>" + password + "</h3>"
+
+      // append the newly created DOM element to thew text area
+      passwordTextBox.appendChild(passwordTextEl);
+      // passwordTextEl.appendChild(passwordContentEl);
+      console.log(password);
+      // passing the password text into the text area
+      // passwordText.textContent = password;
+      // passwordText.value = passwordText.textContent;
+    
+      // passwordText.setRangeText("Your randomly generated password is: " + password);
+    };
+  }
+  else {
+    return;
+  }
+  
+  // return;
+  // end of generatePassword();
 };
 
 
 
 
-// Write password to the #password input
-function writePassword() {
-  // pass the randomly generated password into "password" variable
-  let password = generatePassword();
-  let passwordText = document.querySelector("#password");
-
-  // passing the password text into the text area
-  passwordText.value = password;
-
-}
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", criteriaSelection);
+generateBtn.addEventListener("click", generatePassword);
